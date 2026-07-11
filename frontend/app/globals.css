@@ -1,26 +1,229 @@
+/* frontend/app/globals.css */
+
+/* Keep the @import and @theme blocks at the top exactly as they are */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand & Style Colors */
+  --color-surface: #fff7fd;
+  --color-surface-dim: #e0d7e0;
+  --color-surface-bright: #fff7fd;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #faf1f9;
+  --color-surface-container: #f4ebf4;
+  --color-surface-container-high: #efe5ee;
+  --color-surface-container-highest: #e9e0e8;
+  --color-on-surface: #1e1a20;
+  --color-on-surface-variant: #4c4450;
+  --color-inverse-surface: #332f35;
+  --color-inverse-on-surface: #f7eef7;
+  --color-outline: #7d7481;
+  --color-outline-variant: #cfc3d1;
+  --color-surface-tint: #7b47a0;
+  --color-primary: #450d6a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #5d2a82;
+  --color-on-primary-container: #d199f9;
+  --color-inverse-primary: #e2b6ff;
+  --color-secondary: #006876;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #7de9fe;
+  --color-on-secondary-container: #006977;
+  --color-tertiary: #2e2c32;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #444248;
+  --color-on-tertiary-container: #b2aeb6;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #f3daff;
+  --color-primary-fixed-dim: #e2b6ff;
+  --color-on-primary-fixed: #2e004d;
+  --color-on-primary-fixed-variant: #612e86;
+  --color-secondary-fixed: #9fefff;
+  --color-secondary-fixed-dim: #67d6ea;
+  --on-secondary-fixed: #001f25;
+  --color-on-secondary-fixed-variant: #004e59;
+  --color-tertiary-fixed: #e5e1e9;
+  --color-tertiary-fixed-dim: #c9c5cd;
+  --color-on-tertiary-fixed: #1c1b20;
+  --color-on-tertiary-fixed-variant: #48464c;
+  --color-background: #fff7fd;
+  --color-on-background: #1e1a20;
+  --color-surface-variant: #e9e0e8;
+
+  /* Luxury Spacing Rules */
+  --spacing-base: 8px;
+  --spacing-container-padding-desktop: 80px;
+  --spacing-container-padding-mobile: 20px;
+  --spacing-gutter: 24px;
+  --spacing-section-gap: 120px;
+
+  /* Font Families */
+  --font-display-lg: "Inter", sans-serif;
+  --font-display-lg-mobile: "Inter", sans-serif;
+  --font-headline-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-label-sm: "Inter", sans-serif;
+
+  /* Typography / Font Sizes */
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 600;
+  --text-label-sm--letter-spacing: 0.05em;
+
+  --text-display-lg-mobile: 32px;
+  --text-display-lg-mobile--line-height: 40px;
+  --text-display-lg-mobile--font-weight: 300;
+  --text-display-lg-mobile--letter-spacing: -0.02em;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 400;
+  --text-headline-md--letter-spacing: -0.01em;
+
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--font-weight: 300;
+  --text-display-lg--letter-spacing: -0.02em;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 300;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e9e0e8;
+  border-radius: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom font smoothing styles */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dynamic form input styling for clinical luxury feel (Borders always visible) */
+.dunia-input {
+    background-color: var(--color-surface-container-low);
+    border: 1.5px solid var(--color-outline-variant); /* 1.5px visible border by default */
+    transition: all 0.3s ease;
+}
+
+.dunia-input:focus {
+    outline: none;
+    border-color: var(--color-secondary); /* Transitions to secondary brand teal on focus */
+    box-shadow: 0 0 0 1.5px var(--color-secondary);
+    background-color: var(--color-surface-container-lowest);
+}
+
+/* Design helper classes from Stitch AI */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.organic-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.soft-shadow-hover:hover {
+    box-shadow: 0 20px 40px -15px rgba(69, 13, 106, 0.08);
+    transform: translateY(-4px);
+}
+
+.ambient-shadow {
+    box-shadow: 0 30px 60px -20px rgba(69, 13, 106, 0.05);
+}
+
+/* Onboarding Quiz Pill Selectors */
+.pill-checkbox input:checked + div {
+    background-color: #5d2a82;
+    color: white;
+    border-color: #5d2a82;
+}
+
+.pill-radio input:checked + div {
+    border-color: #5d2a82;
+    background-color: #f3daff;
+    border-width: 2px;
+}
+
+/* Clinical Luxury Slide-in Toast Animations */
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-slide-in-up {
+  animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Clinical Success Loader Timeline */
+@keyframes progressLoad {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-progress-load {
+  animation: progressLoad 2.5s linear forwards;
+  transform-origin: left;
+}
+
+/* Admin Dashboard SVG Chart Styles */
+.chart-path { 
+    stroke: #0096a9; 
+    stroke-width: 2.5; 
+    fill: none; 
+    stroke-linecap: round;
+}
+
+.chart-area { 
+    fill: url(#chartGradient); 
+}
+
+.font-sans-nums { 
+    font-variant-numeric: tabular-nums; 
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Admin Inventory & Bundle Creator Helpers */
+.soft-shadow { 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 15px -5px rgba(0,0,0,0.02); 
+}
+
+.card-border { 
+    border: 1px solid #F3F4F6; 
+}
+
+.input-border { 
+    border: 1px solid #E5E7EB; 
+}
+
+.input-focus:focus { 
+    border-color: #006673; 
+    box-shadow: 0 0 0 3px rgba(0, 102, 115, 0.1); 
+    outline: none; 
 }

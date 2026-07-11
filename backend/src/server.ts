@@ -1,26 +1,45 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import connectDB from './config/db';
+import authRoutes from './routes/authRoutes';
+import configRoutes from './routes/configRoutes';
+import productRoutes from './routes/productRoutes';
+import orderRoutes from './routes/orderRoutes';
+import adminRoutes from './routes/adminRoutes';
+import packRoutes from './routes/packRoutes';
+import uploadRoutes from './routes/uploadRoutes';
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 
-
-app.get('/', (req, res) => {
-  res.send('Dounia E-Pharma API is running!');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
 });
+app.use('/api/', limiter);
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/dunia';
+app.use('/api/auth', authRoutes);
+app.use('/api', configRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/packs', packRoutes);
+app.use('/api/', uploadRoutes);
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('Database connected successfully'))
-  .catch((err) => console.error('Database connection error:', err));
+app.get('/', (req: Request, res: Response) => {
+  res.send('Dunia E-Pharma API is running!');
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
